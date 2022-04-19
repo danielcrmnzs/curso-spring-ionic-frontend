@@ -8,6 +8,17 @@
       </ion-header>
 
       <ion-content>
+        
+        <ion-list lines="none">
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item button (click)="goToHome()" detail="false">
+              <ion-icon slot="start" [ios]="'home-outline'" [md]="'home-sharp'"></ion-icon>
+              <ion-label>Home</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+<!-- 
         <ion-list id="inbox-list">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
@@ -16,8 +27,8 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-        </ion-list>
-
+        </ion-list> -->
+        
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
