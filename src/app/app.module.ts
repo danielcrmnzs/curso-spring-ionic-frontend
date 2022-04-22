@@ -1,3 +1,4 @@
+import { errorInterceptorProviders } from './../interceptors/index';
 import { CategoriaService } from './../services/domain/categoria.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,7 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    CategoriaService
+    CategoriaService,
+    errorInterceptorProviders,
   ],
   bootstrap: [AppComponent],
 })
