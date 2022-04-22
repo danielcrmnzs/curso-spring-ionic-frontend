@@ -9,10 +9,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   public appPages = [{ title: 'Home', url: '/home', icon: 'home' }];
   public labels = [];
-  constructor(private router: Router, private menu: MenuController) {
-  }
+  constructor(private router: Router, private menu: MenuController) {}
 
-  goToHome(){
+  goToHome() {
     this.menu.enable(false);
     this.router.navigateByUrl('/home');
   }

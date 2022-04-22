@@ -1,7 +1,8 @@
-import { AuthService } from './../services/auth.service';
-import { StorageService } from './../services/storage.service';
-import { errorInterceptorProviders } from './../interceptors/index';
-import { CategoriaService } from './../services/domain/categoria.service';
+import { CategoriaService } from './services/domain/categoria.service';
+import { StorageService } from './services/storage.service';
+import { AuthService } from './services/auth.service';
+
+import { errorInterceptorProviders } from './interceptors/index';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';

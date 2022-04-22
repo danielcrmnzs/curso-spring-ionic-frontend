@@ -3,7 +3,6 @@ import { CredenciaisDTO } from './../../models/credenciais.dto';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { error } from 'protractor';
 
 @Component({
   selector: 'app-home',
