@@ -1,3 +1,5 @@
+import { AuthService } from './../services/auth.service';
+import { StorageService } from './../services/storage.service';
 import { errorInterceptorProviders } from './../interceptors/index';
 import { CategoriaService } from './../services/domain/categoria.service';
 import { NgModule } from '@angular/core';
@@ -9,7 +11,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthService } from 'src/services/auth.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { AuthService } from 'src/services/auth.service';
     CategoriaService,
     errorInterceptorProviders,
     AuthService,
+    StorageService,
   ],
   bootstrap: [AppComponent],
 })

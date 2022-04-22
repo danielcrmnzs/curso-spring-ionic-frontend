@@ -25,14 +25,13 @@ export class HomePage implements OnInit {
   ngOnInit() {}
 
   login() {
-    this.auth.authenticate(this.creds)
-      .subscribe((response) => {
-        console.log(response.headers.get('Authorization'));
+    this.auth.authenticate(this.creds).subscribe(
+      (response) => {
+        this.auth.successfullLogin(response.headers.get('Authorization'));
         this.router.navigateByUrl('/categorias');
-        },
-        error => {}
-      );
-
+      },
+      (error) => {}
+    );
   }
 
   ionViewWillEnter() {
