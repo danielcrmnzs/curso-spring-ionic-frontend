@@ -7,7 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public appPages = [{ title: 'Home', url: '/home', icon: 'home' }];
+  public appPages = [
+    {title: 'Profile', url: '/profile', icon: 'person' },
+    {title: 'Categorias', url: '/categorias', icon: 'layers' }  
+  ];
   public labels = [];
   constructor(private router: Router, private menu: MenuController) {}
 

@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
   };
 
   constructor(
-    private router: Router,
+    public router: Router,
     public menu: MenuController,
     public auth: AuthService
   ) {}
