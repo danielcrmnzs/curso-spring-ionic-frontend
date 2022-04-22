@@ -1,7 +1,9 @@
+import { AuthService } from './../../services/auth.service';
 import { CredenciaisDTO } from './../../models/credenciais.dto';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +16,23 @@ export class HomePage implements OnInit {
     senha: '',
   };
 
-  constructor(private router: Router, public menu: MenuController) {}
+  constructor(
+    private router: Router,
+    public menu: MenuController,
+    public auth: AuthService
+  ) {}
 
   ngOnInit() {}
 
   login() {
-    console.log(this.creds);    
-    this.router.navigateByUrl('/categorias');
+    this.auth.authenticate(this.creds)
+      .subscribe((response) => {
+        console.log(response.headers.get('Authorization'));
+        this.router.navigateByUrl('/categorias');
+        },
+        error => {}
+      );
+
   }
 
   ionViewWillEnter() {
