@@ -12,5 +12,9 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-{{ email }}
+  <span class="avatar">
+    <ion-img [src]="cliente?.imageUrl || 'assets/imgs/avatar-blank.png'"></ion-img>
+  </span>
+  <h2 class="ion-text-center">{{ cliente?.nome }}</h2>
+  <p class="ion-text-center">{{ cliente?.email }}</p>
 </ion-content>

@@ -1,7 +1,3 @@
-import { CategoriaService } from './services/domain/categoria.service';
-import { StorageService } from './services/storage.service';
-import { AuthService } from './services/auth.service';
-
 import { errorInterceptorProviders } from './interceptors/index';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,10 +21,7 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    CategoriaService,
     errorInterceptorProviders,
-    AuthService,
-    StorageService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
   ],

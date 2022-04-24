@@ -2,7 +2,9 @@ import { STORAGE_KEYS } from './../config/storage-keys.config';
 import { LocalUser } from './../models/local-user';
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class StorageService {
   getLocalUser(): LocalUser {
     let usr = localStorage.getItem(STORAGE_KEYS.localUser);

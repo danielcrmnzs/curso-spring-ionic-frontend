@@ -1,0 +1,13 @@
+.avatar ion-img::part(image) {
+  border-radius: 50%;
+  width: 60%;
+  height: 60%;
+  margin: 0 auto;
+}
+
+ion-img::part(image) {
+  border-radius: 10%;
+  width: 60%;
+  height: 60%;
+  margin: 0 auto;
+}
