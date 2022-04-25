@@ -1,4 +1,4 @@
-import { errorInterceptorProviders } from './interceptors/index';
+import { httpInterceptorProviders } from './interceptors/index';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,7 +21,7 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    errorInterceptorProviders,
+    httpInterceptorProviders,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
   ],
