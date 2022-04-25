@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   public appPages = [
-    {title: 'Profile', url: '/profile', icon: 'person' },
-    {title: 'Categorias', url: '/categorias', icon: 'layers' }  
+    { title: 'Profile', url: '/profile', icon: 'person' },
+    { title: 'Categorias', url: '/categorias', icon: 'layers' },
   ];
   public labels = [];
   constructor(private router: Router, private menu: MenuController) {}

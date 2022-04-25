@@ -29,8 +29,14 @@ export class ProfilePage implements OnInit {
           this.cliente = response;
           this.getImageIfExists();
         },
-        (error) => {}
+        (error) => {
+          if (error.status == 403) {
+            this.router.navigateByUrl('/home');
+          }
+        }
       );
+    } else {
+      this.router.navigateByUrl('/home');
     }
   }
 
