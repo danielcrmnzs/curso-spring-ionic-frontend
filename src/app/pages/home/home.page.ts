@@ -41,4 +41,14 @@ export class HomePage implements OnInit {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
   }
+
+  ionViewDidEnter() {
+    this.auth.refreshToken().subscribe(
+      (response) => {
+        this.auth.successfullLogin(response.headers.get('Authorization'));
+        this.router.navigateByUrl('/categorias');
+      },
+      (error) => {}
+    );
+  }
 }
