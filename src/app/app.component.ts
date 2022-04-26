@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { MenuController } from '@ionic/angular';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,10 +13,19 @@ export class AppComponent {
     { title: 'Categorias', url: '/categorias', icon: 'layers' },
   ];
   public labels = [];
-  constructor(private router: Router, private menu: MenuController) {}
+  constructor(
+    private router: Router,
+    private menu: MenuController,
+    private authService: AuthService
+  ) {}
 
   goToHome() {
     this.menu.enable(false);
     this.router.navigateByUrl('/home');
+  }
+
+  logout() {
+    this.authService.logout();
+    this.goToHome();
   }
 }
