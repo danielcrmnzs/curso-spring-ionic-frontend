@@ -1,3 +1,4 @@
+import { StorageService } from './../../services/storage.service';
 import { AuthService } from './../../services/auth.service';
 import { CredenciaisDTO } from './../../models/credenciais.dto';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,8 @@ export class HomePage implements OnInit {
   constructor(
     public router: Router,
     public menu: MenuController,
-    public auth: AuthService
+    public auth: AuthService,
+    private storage: StorageService
   ) {}
 
   ngOnInit() {}
@@ -37,18 +39,24 @@ export class HomePage implements OnInit {
     this.menu.enable(false);
   }
 
-  ionViewDidLeave() {
+  ionViewWillLeave() {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
   }
 
   ionViewDidEnter() {
-    this.auth.refreshToken().subscribe(
-      (response) => {
-        this.auth.successfullLogin(response.headers.get('Authorization'));
-        this.router.navigateByUrl('/categorias');
-      },
-      (error) => {}
-    );
+    if (this.storage.getLocalUser() != null) {
+      this.auth.refreshToken().subscribe(
+        (response) => {
+          this.auth.successfullLogin(response.headers.get('Authorization'));
+          this.router.navigateByUrl('/categorias');
+        },
+        (error) => {}
+      );
+    }
+  }
+
+  goToSignup() {
+    this.router.navigateByUrl('/signup');
   }
 }

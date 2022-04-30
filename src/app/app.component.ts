@@ -1,3 +1,4 @@
+import { AppNavegate } from './app-navegate';
 import { AuthService } from './services/auth.service';
 import { MenuController } from '@ionic/angular';
 import { Component } from '@angular/core';
@@ -16,16 +17,19 @@ export class AppComponent {
   constructor(
     private router: Router,
     private menu: MenuController,
-    private authService: AuthService
+    private authService: AuthService,
+    private navegate: AppNavegate
   ) {}
-
-  goToHome() {
-    this.menu.enable(false);
-    this.router.navigateByUrl('/home');
-  }
 
   logout() {
     this.authService.logout();
-    this.goToHome();
+  //  this.goToHome();
+    this.navegate.goToHome();
   }
+
+
+  // goToHome() {
+  //   this.menu.enable(false);
+  //   this.router.navigateByUrl('/home');
+  // }
 }
