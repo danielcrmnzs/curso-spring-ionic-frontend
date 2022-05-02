@@ -35,8 +35,26 @@
       <ion-label position="stacked">CPF ou CNPJ</ion-label>
       <ion-input formControlName="cpfOuCnpj" type="text"></ion-input>
     </ion-item>
+
+    <!-- <div
+      *ngIf="formGroup.controls.cpfOuCnpj.invalid && (formGroup.controls.cpfOuCnpj.dirty || formGroup.controls.cpfOuCnpj.touched)"
+      class="alert alert-danger">
+
+      <div *ngIf="formGroup.controls.cpfOuCnpj.errors?.['required']">
+        Preenchimento Obrigatório.
+      </div>
+      <div *ngIf="formGroup.controls.cpfOuCnpj.errors?.['cpfOuCnpj']">
+        CPF ou CNPJ Inválido.
+      </div>
+      
+    </div> -->
+
     <p class="ion-margin-start danger"
-      *ngIf="formGroup.controls['cpfOuCnpj'].dirty && formGroup.controls['cpfOuCnpj'].errors">Valor inválido</p>
+      *ngIf="formGroup.controls['cpfOuCnpj'].dirty && formGroup.controls['cpfOuCnpj'].errors?.['required']">Campo
+      Obrigatório</p>
+    <p class="ion-margin-start danger"
+      *ngIf="formGroup.controls['cpfOuCnpj'].dirty && formGroup.controls['cpfOuCnpj'].errors?.['cpfOuCnpj']">CPF ou CNPJ
+      inválido</p>
     <ion-item>
       <ion-label position="stacked">Senha*</ion-label>
       <ion-input formControlName="senha" type="password"></ion-input>

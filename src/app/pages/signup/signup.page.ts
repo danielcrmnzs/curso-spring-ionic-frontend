@@ -1,3 +1,4 @@
+import { MeuValidador } from './../../validators/meu-validador';
 import { CidadeDTO } from './../../models/cidade.dto';
 import { EstadoDTO } from './../../models/estado.dto';
 import { EstadoService } from './../../services/domain/estado.service';
@@ -39,8 +40,7 @@ export class SignupPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(11),
-          Validators.maxLength(14),
+          MeuValidador.cpfOuCnpj,
         ],
       ],
       senha: ['', [Validators.required]],
