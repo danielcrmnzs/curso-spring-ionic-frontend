@@ -33,7 +33,7 @@ export class SignupPage implements OnInit {
           Validators.maxLength(120),
         ],
       ],
-      email: ['', [Validators.required], [Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       tipo: ['1', [Validators.required]],
       cpfOuCnpj: [
         '',
