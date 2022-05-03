@@ -1,11 +1,13 @@
+import { Router } from '@angular/router';
+import { ClienteService } from './../../services/domain/cliente.service';
 import { MeuValidador } from './../../validators/meu-validador';
 import { CidadeDTO } from './../../models/cidade.dto';
 import { EstadoDTO } from './../../models/estado.dto';
 import { EstadoService } from './../../services/domain/estado.service';
 import { CidadeService } from './../../services/domain/cidade.service';
-import { MenuController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 import { AppNavegate } from './../../app-navegate';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, enableProdMode } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -19,11 +21,14 @@ export class SignupPage implements OnInit {
   public cidades: CidadeDTO[];
 
   constructor(
+    public router: Router,
     private navegate: AppNavegate,
     public menu: MenuController,
     public formBuilder: FormBuilder,
     public cidadeService: CidadeService,
-    public estadoService: EstadoService
+    public estadoService: EstadoService,
+    public clienteService: ClienteService,
+    public alertCtrl: AlertController
   ) {
     this.formGroup = this.formBuilder.group({
       nome: [
@@ -36,13 +41,7 @@ export class SignupPage implements OnInit {
       ],
       email: ['', [Validators.required, Validators.email]],
       tipo: ['1', [Validators.required]],
-      cpfOuCnpj: [
-        '',
-        [
-          Validators.required,
-          MeuValidador.cpfOuCnpj,
-        ],
-      ],
+      cpfOuCnpj: ['', [Validators.required, MeuValidador.cpfOuCnpj]],
       senha: ['', [Validators.required]],
       logradouro: ['', [Validators.required]],
       numero: ['', [Validators.required]],
@@ -86,7 +85,29 @@ export class SignupPage implements OnInit {
   }
 
   signupUser() {
-    console.log('Enviou o form!');
+    this.clienteService.insert(this.formGroup.value).subscribe(
+      (response) => {
+        this.showInsertOk();
+      },
+      (error) => {}
+    );
+  }
+
+  async showInsertOk() {
+    const alert = await this.alertCtrl.create({
+      header: 'Sucesso!',
+      message: 'Cadastro efetuado com sucesso',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () =>{
+            this.navegate.goToHome();
+          }
+        },
+      ],
+    });
+    await alert.present();
   }
 
   goToHome() {

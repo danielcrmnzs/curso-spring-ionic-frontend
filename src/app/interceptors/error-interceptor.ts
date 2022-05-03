@@ -1,3 +1,4 @@
+import { FieldMessage } from './../models/field-message.dto';
 import { StorageService } from './../services/storage.service';
 import { Injectable, enableProdMode } from '@angular/core';
 import {
@@ -42,6 +43,9 @@ export class ErrorInterceptor implements HttpInterceptor {
           case 403:
             this.handle_403();
             break;
+          case 422:
+            this.handle_422(errorObj);
+            break;
           default:
             this.handleDefaultError(errorObj);
         }
@@ -73,5 +77,29 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   handle_403() {
     this.storage.setLocalUser(null);
+  }
+
+  async handle_422(errorObj) {
+    const alert = await this.alertCtrl.create({
+      header: 'Erro 422: Validação',
+      message: this.listErrors(errorObj.errors),
+      backdropDismiss: false,
+      buttons: [{ text: 'Ok' }],
+    });
+    await alert.present();
+  }
+
+  private listErrors(messages: FieldMessage[]): string {
+    let s: string = '';
+    for (var i = 0; i < messages.length; i++) {
+      s =
+        s +
+        '<p><strong>' +
+        messages[i].fieldName +
+        '</strong>: ' +
+        messages[i].message +
+        '</p>';
+    }
+    return s;
   }
 }

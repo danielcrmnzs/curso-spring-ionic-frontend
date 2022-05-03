@@ -103,7 +103,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Estado*</ion-label>
-      <ion-select formControlName="estadoId" (ionChange)="updateCidades()">
+      <ion-select (ionChange)="updateCidades()">
         <ion-select-option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nome }}</ion-select-option>
       </ion-select>
     </ion-item>
