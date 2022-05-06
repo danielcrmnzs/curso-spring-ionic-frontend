@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CategoriaService } from './../../services/domain/categoria.service';
 import { CategoriaDTO } from './../../models/categoria.dto';
 import { API_CONFIG } from './../../config/api.config';
@@ -12,7 +13,7 @@ export class CategoriasPage implements OnInit {
   buckerUrl: string = API_CONFIG.bucketBaseUrl;
   items: CategoriaDTO[];
 
-  constructor(public categoriaService: CategoriaService) {}
+  constructor(public categoriaService: CategoriaService, public router: Router) {}
 
   ngOnInit() {}
 
@@ -24,4 +25,9 @@ export class CategoriasPage implements OnInit {
       (error) => {}
     );
   }
+
+  goToProdutos(){
+    this.router.navigateByUrl("produtos");
+  }
+
 }

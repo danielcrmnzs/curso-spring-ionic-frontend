@@ -31,12 +31,12 @@ export class ProfilePage implements OnInit {
         },
         (error) => {
           if (error.status == 403) {
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('home');
           }
         }
       );
     } else {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('home');
     }
   }
 

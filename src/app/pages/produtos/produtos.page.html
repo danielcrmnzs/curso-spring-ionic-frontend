@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-menu-toggle> -->
+      <!-- <ion-button>
+          <ion-icon name="menu"></ion-icon>
+        </ion-button> -->
+      <ion-button (click)="goToCategorias()">
+        <ion-icon name="arrow-undo"></ion-icon>
+      </ion-button>
+      <!-- <ion-back-button icon="arrow-undo" defaultHref="categorias"></ion-back-button> -->
+      <!-- </ion-menu-toggle> -->
+    </ion-buttons>
+    <ion-title>Produtos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item button *ngFor="let item of items">
+      <ion-thumbnail slot="start">
+        <img [src]="item.imageUrl || 'assets/imgs/prod.jpg'">
+      </ion-thumbnail>
+      <ion-label>
+        <ion-text color="primary">
+          <h2>{{ item.nome }}</h2>
+        </ion-text>
+        <ion-text color="secondary">
+          <p>{{ item.preco | currency }}</p>
+        </ion-text>
+      </ion-label>
+
+    </ion-item>
+  </ion-list>
+</ion-content>
