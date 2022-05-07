@@ -13,7 +13,10 @@ export class CategoriasPage implements OnInit {
   buckerUrl: string = API_CONFIG.bucketBaseUrl;
   items: CategoriaDTO[];
 
-  constructor(public categoriaService: CategoriaService, public router: Router) {}
+  constructor(
+    public categoriaService: CategoriaService,
+    public router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -26,8 +29,13 @@ export class CategoriasPage implements OnInit {
     );
   }
 
-  goToProdutos(){
-    this.router.navigateByUrl("produtos");
+  goToProdutos(categoria_id: string) {
+    // this.router.navigateByUrl(
+    //   this.router.createUrlTree([
+    //     'produtos',
+    //     { categoria_id: categoria_id },
+    //   ])
+    // );
+    this.router.navigateByUrl(`produtos?categoria_id=${categoria_id}`);
   }
-
 }

@@ -14,7 +14,7 @@
 
 <ion-content class="ion-padding">
   <ion-list>
-    <ion-item button *ngFor="let item of items" (click)="goToProdutos()">
+    <ion-item button *ngFor="let item of items" (click)="goToProdutos(item.id)">
       <ion-thumbnail slot="start">
         <img src="{{buckerUrl}}/cat{{item.id}}.jpg">
       </ion-thumbnail>

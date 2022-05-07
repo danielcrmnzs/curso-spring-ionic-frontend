@@ -1,4 +1,5 @@
-import { Router } from '@angular/router';
+import { ProdutoService } from './../../services/domain/produto.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProdutoDTO } from './../../models/produto.dto';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,28 +11,27 @@ import { Component, OnInit } from '@angular/core';
 export class ProdutosPage implements OnInit {
   items: ProdutoDTO[];
 
-  constructor(public router: Router) {}
+  constructor(
+    private router: Router,
+    private produtoService: ProdutoService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {}
 
   ionViewDidEnter() {
-    this.items = [
-      {
-        id: '1',
-        nome: 'Mouse',
-        preco: 80.99,
+    let categoria_id;
+
+    this.route.queryParams.subscribe((params) => {
+      categoria_id = params.categoria_id;
+    });
+
+    this.produtoService.findByCategoria(categoria_id).subscribe(
+      (response) => {
+        this.items = response['content'];
       },
-      {
-        id: '2',
-        nome: 'Teclado',
-        preco: 120.99,
-      },
-      {
-        id: '3',
-        nome: 'PC',
-        preco: 1200.99,
-      },
-    ];
+      (error) => {}
+    );
   }
 
   goToCategorias() {
