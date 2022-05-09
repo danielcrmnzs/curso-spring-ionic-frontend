@@ -1,3 +1,5 @@
+import { catchError, map } from 'rxjs/operators';
+import { API_CONFIG } from './../../config/api.config';
 import { ProdutoService } from './../../services/domain/produto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProdutoDTO } from './../../models/produto.dto';
@@ -29,6 +31,7 @@ export class ProdutosPage implements OnInit {
     this.produtoService.findByCategoria(categoria_id).subscribe(
       (response) => {
         this.items = response['content'];
+        this.loadImageUrls();
       },
       (error) => {}
     );
@@ -36,5 +39,17 @@ export class ProdutosPage implements OnInit {
 
   goToCategorias() {
     this.router.navigateByUrl('categorias');
+  }
+
+  loadImageUrls() {
+    for (let i = 0; i < this.items.length; i++) {
+      let item = this.items[i];
+      this.produtoService.hasSmallImageFromBucket(item.id).subscribe(
+        (response) => {
+          item.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.id}-small.jpg`;
+        },
+        (error) => {}
+      );
+    }
   }
 }
