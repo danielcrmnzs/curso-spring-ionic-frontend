@@ -52,4 +52,9 @@ export class ProdutosPage implements OnInit {
       );
     }
   }
+
+  goToProdutoDetail(){
+    this.router.navigateByUrl('produto-detail');
+  }
+
 }
