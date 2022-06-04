@@ -53,8 +53,7 @@ export class ProdutosPage implements OnInit {
     }
   }
 
-  goToProdutoDetail(){
-    this.router.navigateByUrl('produto-detail');
+  goToProdutoDetail(produto_id: string) {
+    this.router.navigateByUrl(`produto-detail?produto_id=${produto_id}`);
   }
-
 }
