@@ -1,5 +1,6 @@
+import { CarrinhoService } from './../../services/domain/carrinho.service';
 import { API_CONFIG } from './../../config/api.config';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProdutoService } from './../../services/domain/produto.service';
 import { ProdutoDTO } from './../../models/produto.dto';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,9 @@ export class ProdutoDetailPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private carrinhoService: CarrinhoService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -40,5 +43,10 @@ export class ProdutoDetailPage implements OnInit {
       },
       (error) => {}
     );
+  }
+
+  addToCart(produto: ProdutoDTO) {
+    this.carrinhoService.addProduto(produto);
+    this.router.navigateByUrl('cart');
   }
 }

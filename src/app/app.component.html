@@ -22,6 +22,17 @@
         <ion-list lines="full">
 
           <ion-menu-toggle autoHide="false">
+            <ion-item  routerDirection="root" routerLink="/cart" lines="inset" detail="false"
+            routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="'cart-outline'" [md]="'cart-sharp'"></ion-icon>
+              <ion-label>Carrinho</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        
+        <ion-list lines="full">
+
+          <ion-menu-toggle autoHide="false">
             <ion-item button (click)="logout()" detail="false">
               <ion-icon slot="start" [ios]="'log-out-outline'" [md]="'log-out-sharp'"></ion-icon>
               <ion-label>Logout</ion-label>
