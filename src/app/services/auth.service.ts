@@ -1,3 +1,4 @@
+import { CarrinhoService } from './domain/carrinho.service';
 import { LocalUser } from './../models/local-user';
 import { API_CONFIG } from './../config/api.config';
 import { CredenciaisDTO } from './../models/credenciais.dto';
@@ -13,7 +14,8 @@ export class AuthService {
   constructor(
     public http: HttpClient,
     public storage: StorageService,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    private carrinhoService: CarrinhoService
   ) {}
 
   authenticate(creds: CredenciaisDTO) {
@@ -41,6 +43,7 @@ export class AuthService {
       email: this.jwtHelper.decodeToken(tok).sub,
     };
     this.storage.setLocalUser(user);
+    this.carrinhoService.createOrClearCart();
   }
 
   logout() {

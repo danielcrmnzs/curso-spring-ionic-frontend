@@ -1,3 +1,5 @@
+import { AppNavegate } from './../../app-navegate';
+import { ProdutoDTO } from './../../models/produto.dto';
 import { CarrinhoService } from './../../services/domain/carrinho.service';
 import { API_CONFIG } from './../../config/api.config';
 import { ProdutoService } from './../../services/domain/produto.service';
@@ -14,7 +16,8 @@ export class CartPage implements OnInit {
 
   constructor(
     private carrinhoService: CarrinhoService,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private navegate: AppNavegate
   ) {}
 
   ngOnInit() {}
@@ -35,5 +38,25 @@ export class CartPage implements OnInit {
         (error) => {}
       );
     }
+  }
+
+  removeItem(produto: ProdutoDTO) {
+    this.items = this.carrinhoService.removeProduto(produto).items;
+  }
+
+  increaseQuantity(produto: ProdutoDTO) {
+    this.items = this.carrinhoService.increaseQuantity(produto).items;
+  }
+
+  decreaseQuantity(produto: ProdutoDTO) {
+    this.items = this.carrinhoService.decreaseQuantity(produto).items;
+  }
+
+  total(): number {
+    return this.carrinhoService.total();
+  }
+
+  goToCategorias() {
+    this.navegate.goToCategorias();
   }
 }

@@ -7,14 +7,17 @@ import { Injectable } from '@angular/core';
 export class AppNavegate {
   constructor(private router: Router, private menu: MenuController) {}
 
+  goToCategorias() {
+    this.router.navigateByUrl('categorias');
+  }
+
   goToHome() {
     this.menu.enable(false);
     this.router.navigateByUrl('home');
   }
 
-  goToSignup(){
+  goToSignup() {
     this.menu.enable(false);
     this.router.navigateByUrl('signup');
   }
-  
 }
