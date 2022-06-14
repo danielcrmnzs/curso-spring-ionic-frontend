@@ -21,11 +21,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button size="small" href="cart">
-      <ion-icon name="cart"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <app-cart-fab></app-cart-fab>
   <ion-list>
     <ion-item button *ngFor="let item of items" (click)="goToProdutoDetail(item.id)">
       <ion-thumbnail slot="start">

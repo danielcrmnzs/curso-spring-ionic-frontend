@@ -1,3 +1,4 @@
+import { CartFabComponentModule } from './../../components/cart-fab/cart-fab.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,8 +14,9 @@ import { ProdutosPage } from './produtos.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ProdutosPageRoutingModule
+    ProdutosPageRoutingModule,
+    CartFabComponentModule,
   ],
-  declarations: [ProdutosPage]
+  declarations: [ProdutosPage],
 })
 export class ProdutosPageModule {}

@@ -1,3 +1,4 @@
+import { CartFabComponentModule } from './../../components/cart-fab/cart-fab.module';
 import { CategoriasPage } from './categorias.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,6 +14,7 @@ import { CategoriasPageRoutingModule } from './categorias-routing.module';
     FormsModule,
     IonicModule,
     CategoriasPageRoutingModule,
+    CartFabComponentModule,
   ],
   declarations: [CategoriasPage],
 })

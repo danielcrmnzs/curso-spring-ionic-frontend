@@ -7,6 +7,10 @@ import { Injectable } from '@angular/core';
 export class AppNavegate {
   constructor(private router: Router, private menu: MenuController) {}
 
+  goToCart() {
+    this.router.navigateByUrl('cart');
+  }
+
   goToCategorias() {
     this.router.navigateByUrl('categorias');
   }
