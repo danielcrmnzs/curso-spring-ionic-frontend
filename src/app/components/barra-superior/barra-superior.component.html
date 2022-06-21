@@ -1,0 +1,15 @@
+<ion-toolbar color="light">
+  <ion-buttons slot="start">
+    <ion-menu-toggle *ngIf="mostrarBtMenu">
+      <ion-button>
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-menu-toggle>
+    <ng-content select="[slotStart]"></ng-content>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ng-content select="[slotEnd]"></ng-content>
+    <ion-back-button *ngIf="mostrarBtVoltar" icon="arrow-undo"></ion-back-button>
+  </ion-buttons>
+  <ion-title>{{ title }}</ion-title>
+</ion-toolbar>

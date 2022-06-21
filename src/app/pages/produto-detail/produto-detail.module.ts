@@ -1,3 +1,4 @@
+import { BarraSuperiorComponentModule } from './../../components/barra-superior/barra-superior.module';
 import { CartFabComponentModule } from './../../components/cart-fab/cart-fab.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,7 @@ import { ProdutoDetailPage } from './produto-detail.page';
     IonicModule,
     ProdutoDetailPageRoutingModule,
     CartFabComponentModule,
+    BarraSuperiorComponentModule,
   ],
   declarations: [ProdutoDetailPage],
 })

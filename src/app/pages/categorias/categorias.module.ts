@@ -1,3 +1,4 @@
+import { BarraSuperiorComponentModule } from './../../components/barra-superior/barra-superior.module';
 import { CartFabComponentModule } from './../../components/cart-fab/cart-fab.module';
 import { CategoriasPage } from './categorias.page';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,7 @@ import { CategoriasPageRoutingModule } from './categorias-routing.module';
     IonicModule,
     CategoriasPageRoutingModule,
     CartFabComponentModule,
+    BarraSuperiorComponentModule,
   ],
   declarations: [CategoriasPage],
 })

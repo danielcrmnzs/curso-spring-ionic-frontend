@@ -1,3 +1,4 @@
+import { BarraSuperiorComponentModule } from './../../components/barra-superior/barra-superior.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,8 +14,9 @@ import { CartPage } from './cart.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CartPageRoutingModule
+    CartPageRoutingModule,
+    BarraSuperiorComponentModule,
   ],
-  declarations: [CartPage]
+  declarations: [CartPage],
 })
 export class CartPageModule {}

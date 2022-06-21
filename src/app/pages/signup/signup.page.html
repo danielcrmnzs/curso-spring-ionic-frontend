@@ -1,13 +1,9 @@
 <ion-header>
-  <ion-toolbar color="light">
-    <ion-buttons slot="start">
-      <!-- <ion-back-button icon="arrow-undo" (click)="goToHome()"></ion-back-button> -->
-      <ion-button (click)="goToHome()">
-        <ion-icon name="home"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Signup</ion-title>
-  </ion-toolbar>
+  <app-barra-superior title="Signup" [mostrarBtMenu]="true" [mostrarBtVoltar]="false">
+    <ion-button slotStart (click)="goToHome()">
+      <ion-icon name="home"></ion-icon>
+    </ion-button>
+  </app-barra-superior>
 </ion-header>
 
 <ion-content class="ion-padding">

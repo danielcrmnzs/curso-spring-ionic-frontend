@@ -1,9 +1,7 @@
 <ion-header>
-  <ion-toolbar color="light">
-    <ion-buttons slot="end">
-      <ion-button color='primary' (click)="goToSignup()">Registrar</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+  <app-barra-superior [mostrarBtMenu]="false" [mostrarBtVoltar]="false">
+    <ion-button slotEnd color='primary' (click)="goToSignup()">Registrar</ion-button>
+  </app-barra-superior>
 </ion-header>
 
 <ion-content class="ion-padding">
