@@ -11,8 +11,8 @@ import { ClienteDTO } from 'src/app/models/cliente.dto';
 export class ClienteService {
   constructor(public http: HttpClient, public storage: StorageService) {}
 
-  findByEmail(email: string): Observable<ClienteDTO> {
-    return this.http.get<ClienteDTO>(
+  findByEmail(email: string) {
+    return this.http.get(
       `${API_CONFIG.baseUrl}/clientes/email?value=${email}`
     );
   }
