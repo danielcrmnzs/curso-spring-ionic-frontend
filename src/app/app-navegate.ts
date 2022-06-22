@@ -24,4 +24,9 @@ export class AppNavegate {
     this.menu.enable(false);
     this.router.navigateByUrl('signup');
   }
+
+  goToPickAdress(){
+    this.router.navigateByUrl('pick-adress');
+  }
+
 }

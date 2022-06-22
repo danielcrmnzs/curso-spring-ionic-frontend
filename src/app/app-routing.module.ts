@@ -45,6 +45,10 @@ const routes: Routes = [
     path: 'cart',
     loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
   },
+  {
+    path: 'pick-adress',
+    loadChildren: () => import('./pages/pick-adress/pick-adress.module').then( m => m.PickAdressPageModule)
+  },
 ];
 
 @NgModule({

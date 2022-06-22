@@ -56,7 +56,12 @@ export class CartPage implements OnInit {
     return this.carrinhoService.total();
   }
 
-  goToCategorias() {
+  navegateToCategorias() {
     this.navegate.goToCategorias();
   }
+
+  checkout(){
+    this.navegate.goToPickAdress();
+  }
+
 }
