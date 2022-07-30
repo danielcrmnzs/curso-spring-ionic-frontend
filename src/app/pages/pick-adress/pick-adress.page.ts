@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CarrinhoService } from './../../services/domain/carrinho.service';
 import { PedidoDTO } from './../../models/pedido.dto';
 import { AppNavegate } from './../../app-navegate';
@@ -20,13 +21,14 @@ export class PickAdressPage implements OnInit {
     private storage: StorageService,
     private clienteService: ClienteService,
     private navegate: AppNavegate,
-    private carrinhoService: CarrinhoService
-  ) {}
+    private carrinhoService: CarrinhoService,
+    private router: Router
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ionViewDidEnter() {
-    let localUser = this.storage.getLocalUser();
+    const localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       this.clienteService.findByEmail(localUser.email).subscribe(
         (response) => {
@@ -59,6 +61,6 @@ export class PickAdressPage implements OnInit {
 
   selecionarEnderecoDeEntrega(endereco: EnderecoDTO) {
     this.pedido.enderecoDeEntrega = { id: endereco.id };
-    console.log(this.pedido);
+    this.router.navigateByUrl('payment', { state: { pedido: this.pedido } });
   }
 }

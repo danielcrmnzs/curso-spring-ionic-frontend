@@ -1,0 +1,26 @@
+<ion-header>
+  <app-barra-superior title="Forma de pagamento"></app-barra-superior>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="formGroup" (ngSubmit)="nextPage(); $event.preventDefault()">
+
+    <ion-item>
+      <ion-label position="stacked">Forma de pagamento</ion-label>
+      <ion-select formControlName="@type">
+        <ion-select-option value="pagamentoComCartao">Cartão de Crédito</ion-select-option>
+        <ion-select-option value="pagamentoComBoleto">Boleto</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="formGroup.value['@type'] === 'pagamentoComCartao'">
+      <ion-label position="stacked">Parcelas no cartão</ion-label>
+      <ion-select formControlName="numeroDeParcelas">
+        <ion-select-option *ngFor="let n of parcelas; first as f" [value]="n" value="f">{{ n }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="formGroup.invalid">Próximo</ion-button>
+
+  </form>
+</ion-content>
