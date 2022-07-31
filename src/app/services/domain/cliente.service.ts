@@ -9,7 +9,13 @@ import { ClienteDTO } from 'src/app/models/cliente.dto';
   providedIn: 'root',
 })
 export class ClienteService {
-  constructor(public http: HttpClient, public storage: StorageService) {}
+  constructor(public http: HttpClient, public storage: StorageService) { }
+
+  findById(id: string) {
+    return this.http.get(
+      `${API_CONFIG.baseUrl}/clientes/${id}`
+    );
+  }
 
   findByEmail(email: string) {
     return this.http.get(

@@ -30,6 +30,10 @@ export class PaymentPage implements OnInit {
 
   nextPage() {
     this.pedido.pagamento = this.formGroup.value;
-    console.log(this.pedido);
+    this.router.navigateByUrl('order-confirmation',
+      {
+        replaceUrl: true, // impede que, após a confirmação, o botão voltar retorne para a pagina de confirmação
+        state: { pedido: this.pedido } // envia o objeto pedido
+      });
   }
 }

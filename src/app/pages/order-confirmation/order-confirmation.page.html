@@ -1,0 +1,73 @@
+<ion-header>
+  <app-barra-superior title="Confirme seu pedido"></app-barra-superior>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-header>Itens do pedido</ion-card-header>
+
+    <ion-list>
+      <ion-item *ngFor="let item of cartItems">
+        <ion-thumbnail slot="start">
+          <img [src]="item.produto.imageUrl || 'assert/imgs/prod.jpg'">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.produto.nome }}</h2>
+          <p>{{ item.produto.preco | currency }}</p>
+          <p>{{ item.quantidade }}</p>
+        </ion-label>
+        <ion-text slot="end">
+          <p>{{ item.produto.preco * item.quantidade | currency }}</p>
+        </ion-text>
+      </ion-item>
+
+      <ion-item>
+        <h2>Total</h2>
+        <h2 slot="end">{{ total() | currency }}</h2>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>Cliente</ion-card-header>
+
+    <ion-item>
+      <ion-label>
+        <h2>{{ cliente?.nome }}</h2>
+        <p>{{ cliente?.email }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>Endereço de entrega</ion-card-header>
+
+    <ion-item>
+      <ion-label>
+        <h2>{{ endereco?.logradouro }}, {{ endereco?.numero }}. {{ endereco?.complemento }}</h2>
+        <p>{{ endereco?.bairro }} CEP {{ endereco?.cep }}</p>
+        <p>{{ endereco?.cidade.nome }}, {{ endereco?.cidade.estado.nome }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>Pagamento</ion-card-header>
+
+    <ion-item *ngIf="pedido.pagamento['@type'] === 'pagamentoComCartao'">
+      <ion-label>
+        <h3>Pagamento com cartão</h3>
+        <p>Parcelas: {{ pedido.pagamento.numeroDeParcelas }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="pedido.pagamento['@type'] === 'pagamentoComBoleto'">
+      <ion-label>
+        <h3>Pagamento com botelo</h3>
+      </ion-label>
+    </ion-item>
+
+  </ion-card>
+</ion-content>
