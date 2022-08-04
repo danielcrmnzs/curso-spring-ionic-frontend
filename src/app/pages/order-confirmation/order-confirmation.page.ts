@@ -1,3 +1,4 @@
+import { PedidoService } from './../../services/domain/pedido.service';
 import { AppNavegate } from './../../app-navegate';
 import { ClienteService } from './../../services/domain/cliente.service';
 import { EnderecoDTO } from './../../models/endereco.dto';
@@ -24,7 +25,8 @@ export class OrderConfirmationPage implements OnInit {
     private carrinhoService: CarrinhoService,
     private router: Router,
     private clienteService: ClienteService,
-    private navegate: AppNavegate) {
+    private navegate: AppNavegate,
+    private pedidoService: PedidoService) {
     this.pedido = this.router.getCurrentNavigation().extras.state.pedido;
   }
 
@@ -52,6 +54,29 @@ export class OrderConfirmationPage implements OnInit {
 
   total() {
     return this.carrinhoService.total();
+  }
+
+  checkout() {
+    this.pedidoService.insert(this.pedido)
+      .subscribe(
+        response => {
+          this.carrinhoService.createOrClearCart();
+          // console.log(this.pedido);          
+          // console.log('AQUI!!!');
+          // console.log(response)
+          
+          // console.log(response.headers);
+          // console.log(response.headers.get('location'));
+        },
+        error => {
+          if (error.status == 403) {
+            this.navegate.setRootToHome();
+          }
+        })
+  }
+
+  back() {
+    this.navegate.setRootToCart();
   }
 
 }
