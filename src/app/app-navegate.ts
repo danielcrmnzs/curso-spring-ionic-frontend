@@ -18,9 +18,15 @@ export class AppNavegate {
       });
   }
 
-
   goToCategorias() {
     this.router.navigateByUrl('categorias');
+  }
+
+  setRootToCategorias() {
+    this.router.navigateByUrl('categorias',
+      {
+        replaceUrl: true, // impede que, após a confirmação, o botão voltar retorne para a pagina de confirmação
+      });
   }
 
   goToHome() {

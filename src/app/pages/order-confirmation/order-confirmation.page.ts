@@ -20,6 +20,7 @@ export class OrderConfirmationPage implements OnInit {
   cartItems: CartItem[];
   cliente: ClienteDTO;
   endereco: EnderecoDTO;
+  codPedido: string;
 
   constructor(
     private carrinhoService: CarrinhoService,
@@ -61,12 +62,7 @@ export class OrderConfirmationPage implements OnInit {
       .subscribe(
         response => {
           this.carrinhoService.createOrClearCart();
-          // console.log(this.pedido);          
-          // console.log('AQUI!!!');
-          // console.log(response)
-          
-          // console.log(response.headers);
-          // console.log(response.headers.get('location'));
+          this.codPedido = this.extractId(response.headers.get('location'));
         },
         error => {
           if (error.status == 403) {
@@ -77,6 +73,15 @@ export class OrderConfirmationPage implements OnInit {
 
   back() {
     this.navegate.setRootToCart();
+  }
+
+  backToCategoria() {
+    this.navegate.setRootToCategorias();
+  }
+
+  private extractId(location: string): string {
+    const position = location.lastIndexOf('/');
+    return location.substring(position + 1, location.length);
   }
 
 }
