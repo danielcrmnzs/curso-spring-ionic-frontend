@@ -24,6 +24,10 @@ export class ProdutosPage implements OnInit {
   ngOnInit() { }
 
   ionViewDidEnter() {
+    this.loadData();
+  }
+
+  loadData() {
     let categoria_id;
 
     this.route.queryParams.subscribe((params) => {
@@ -63,6 +67,13 @@ export class ProdutosPage implements OnInit {
 
   goToProdutoDetail(produto_id: string) {
     this.router.navigateByUrl(`produto-detail?produto_id=${produto_id}`);
+  }
+
+  doRefresh(event) {
+    this.loadData();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
   }
 
 }
