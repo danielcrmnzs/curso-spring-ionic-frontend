@@ -1,4 +1,4 @@
-import { catchError, map } from 'rxjs/operators';
+import { LoadingController } from '@ionic/angular';
 import { API_CONFIG } from './../../config/api.config';
 import { ProdutoService } from './../../services/domain/produto.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,10 +16,11 @@ export class ProdutosPage implements OnInit {
   constructor(
     private router: Router,
     private produtoService: ProdutoService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private loadingCtrl: LoadingController
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ionViewDidEnter() {
     let categoria_id;
@@ -28,12 +29,25 @@ export class ProdutosPage implements OnInit {
       categoria_id = params.categoria_id;
     });
 
+    this.showLoading();
+
     this.produtoService.findByCategoria(categoria_id).subscribe(
       (response) => {
         this.items = response['content'];
+
         this.loadImageUrls();
+        setTimeout(() => {
+          this.loadingCtrl.dismiss();
+        }, 300);
+        // .then((response) => {
+        //   console.log('Loader closed!', response);
+        // }).catch((err) => {
+        //   console.log('Error occured : ', err);
+        // });
       },
-      (error) => {}
+      (error) => {
+        this.loadingCtrl.dismiss();
+      }
     );
   }
 
@@ -48,12 +62,23 @@ export class ProdutosPage implements OnInit {
         (response) => {
           item.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.id}-small.jpg`;
         },
-        (error) => {}
+        (error) => { }
       );
     }
   }
 
   goToProdutoDetail(produto_id: string) {
     this.router.navigateByUrl(`produto-detail?produto_id=${produto_id}`);
+  }
+
+  async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Aguarde...',
+      //duration: 3000,
+      cssClass: 'custom-loading',
+    });
+
+    loading.present();
+
   }
 }
