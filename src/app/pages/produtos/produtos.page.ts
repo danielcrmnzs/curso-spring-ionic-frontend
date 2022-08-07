@@ -12,7 +12,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./produtos.page.scss'],
 })
 export class ProdutosPage implements OnInit {
-  items: ProdutoDTO[];
+
+  items: ProdutoDTO[] = [];
+
+  page: number = 0;
 
   constructor(
     private router: Router,
@@ -36,25 +39,29 @@ export class ProdutosPage implements OnInit {
 
     this.loadingService.showLoading();
 
-    this.produtoService.findByCategoria(categoria_id).subscribe(
-      (response) => {
-        this.items = response['content'];
-
-        this.loadImageUrls();
-        this.loadingService.dismissLoading();
-      },
-      (error) => {
-        this.loadingService.dismissLoading();
-      }
-    );
+    this.produtoService.findByCategoria(categoria_id, this.page, 20)
+      .subscribe(
+        (response) => {
+          let start = this.items.length;
+          this.items = this.items.concat(response['content']);
+          let end = this.items.length - 1;
+          this.loadImageUrls(start, end);
+          this.loadingService.dismissLoading();
+          console.log(this.page);
+          console.log(this.items);
+        },
+        (error) => {
+          this.loadingService.dismissLoading();
+        }
+      );
   }
 
   goToCategorias() {
     this.router.navigateByUrl('categorias');
   }
 
-  loadImageUrls() {
-    for (let i = 0; i < this.items.length; i++) {
+  loadImageUrls(start: number, end: number) {
+    for (let i = start; i <= end; i++) {
       let item = this.items[i];
       this.produtoService.hasSmallImageFromBucket(item.id).subscribe(
         (response) => {
@@ -70,10 +77,22 @@ export class ProdutosPage implements OnInit {
   }
 
   doRefresh(event) {
+    this.page = 0;
+    this.items = [];
+    
     this.loadData();
     setTimeout(() => {
       event.target.complete();
     }, 1000);
   }
+
+  doInfinite(event) {
+    this.page++;
+    this.loadData();
+    setTimeout(() => {
+      event.target.complete();
+    }, 500);
+  }
+
 
 }

@@ -9,11 +9,11 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ProdutoService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  findByCategoria(categoria_id: string) {
+  findByCategoria(categoria_id: string, page: number = 0, linesPerPage: number = 24) {
     return this.http.get(
-      `${API_CONFIG.baseUrl}/produtos/?categorias=${categoria_id}`
+      `${API_CONFIG.baseUrl}/produtos/?categorias=${categoria_id}&page=${page}&linesPerPage=${linesPerPage}`
     );
   }
 
