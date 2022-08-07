@@ -1,3 +1,4 @@
+import { IonLoadingService } from './../../services/ion-loading.service';
 import { LoadingController } from '@ionic/angular';
 import { API_CONFIG } from './../../config/api.config';
 import { ProdutoService } from './../../services/domain/produto.service';
@@ -17,7 +18,7 @@ export class ProdutosPage implements OnInit {
     private router: Router,
     private produtoService: ProdutoService,
     private route: ActivatedRoute,
-    private loadingCtrl: LoadingController
+    private loadingService: IonLoadingService
   ) { }
 
   ngOnInit() { }
@@ -29,24 +30,17 @@ export class ProdutosPage implements OnInit {
       categoria_id = params.categoria_id;
     });
 
-    this.showLoading();
+    this.loadingService.showLoading();
 
     this.produtoService.findByCategoria(categoria_id).subscribe(
       (response) => {
         this.items = response['content'];
 
         this.loadImageUrls();
-        setTimeout(() => {
-          this.loadingCtrl.dismiss();
-        }, 300);
-        // .then((response) => {
-        //   console.log('Loader closed!', response);
-        // }).catch((err) => {
-        //   console.log('Error occured : ', err);
-        // });
+        this.loadingService.dismissLoading();
       },
       (error) => {
-        this.loadingCtrl.dismiss();
+        this.loadingService.dismissLoading();
       }
     );
   }
@@ -71,14 +65,4 @@ export class ProdutosPage implements OnInit {
     this.router.navigateByUrl(`produto-detail?produto_id=${produto_id}`);
   }
 
-  async showLoading() {
-    const loading = await this.loadingCtrl.create({
-      message: 'Aguarde...',
-      //duration: 3000,
-      cssClass: 'custom-loading',
-    });
-
-    loading.present();
-
-  }
 }
