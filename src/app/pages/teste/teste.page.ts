@@ -1,3 +1,4 @@
+import { IonLoaderService } from './../../services/ion-loading.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestePage implements OnInit {
 
-  constructor() { }
+  constructor(private ionLoaderService: IonLoaderService) { }
 
   ngOnInit() {
+  }
+
+  displayAutoLoader() {
+    this.ionLoaderService.autoLoader();
+  }
+  showLoader() {
+    this.ionLoaderService.simpleLoader();
+  }
+  hideLoader() {
+    this.ionLoaderService.dismissLoader();
+  }
+  customizeLoader() {
+    this.ionLoaderService.customLoader();
   }
 
 }

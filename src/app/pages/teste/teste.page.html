@@ -1,21 +1,13 @@
-<ion-app>
-  <ion-menu side="start" menuId="first" contentId="main">
-    <ion-header>
-      <ion-toolbar color="secondary">
-        <ion-title>Example Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item>Menu Item</ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  <div class="ion-page" id="main">
-    <ion-content class="ion-padding">
-      <ion-menu-toggle>
-        <ion-button>Toggle Menu</ion-button>
-      </ion-menu-toggle>
-    </ion-content>
-  </div>
-</ion-app>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Ionic Loader Examples
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-button (click)="displayAutoLoader()" color="primary" expand="block">Show auto loader</ion-button>
+  <ion-button (click)="showLoader()" color="success" expand="block">Display loader</ion-button>
+  <ion-button (click)="hideLoader()" color="danger" expand="block">Close loader</ion-button>
+  <ion-button (click)="customizeLoader()" color="light" expand="block">Show customized loader</ion-button>
+</ion-content>
