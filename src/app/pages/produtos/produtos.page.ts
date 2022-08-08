@@ -27,6 +27,9 @@ export class ProdutosPage implements OnInit {
   ngOnInit() { }
 
   ionViewDidEnter() {
+    this.page = 0;
+    this.items = [];
+    
     this.loadData();
   }
 

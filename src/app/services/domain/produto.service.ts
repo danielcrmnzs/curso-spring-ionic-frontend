@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { API_CONFIG } from './../../config/api.config';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +34,7 @@ export class ProdutoService {
 
   hasSmallImageFromBucket(id: string): Observable<any> {
     let url = `${API_CONFIG.bucketBaseUrl}/prod${id}-small.jpg`;
-    return this.http.head(url, { responseType: 'blob' });
+    return this.http.get(url, { responseType: 'blob' });
+    //    return this.http.head(url, { responseType: 'blob' });
   }
 }
