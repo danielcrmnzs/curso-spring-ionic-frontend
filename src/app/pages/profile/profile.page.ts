@@ -4,6 +4,7 @@ import { ClienteDTO } from './../../models/cliente.dto';
 import { StorageService } from './../../services/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-profile',
@@ -12,14 +13,16 @@ import { Router } from '@angular/router';
 })
 export class ProfilePage implements OnInit {
   cliente: ClienteDTO;
+  picture: string;
+  cameraOn: boolean = false;
 
   constructor(
     public router: Router,
     public storage: StorageService,
     public clienteService: ClienteService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ionViewDidEnter() {
     let localUser = this.storage.getLocalUser();
@@ -45,7 +48,20 @@ export class ProfilePage implements OnInit {
       (response) => {
         this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
       },
-      (error) => {}
+      (error) => { }
     );
   }
+
+  async takePicture() {
+    this.cameraOn = true;
+    const image = await Camera.getPhoto({
+      quality: 100,
+      allowEditing: true,
+      resultType: CameraResultType.DataUrl
+    });
+
+    this.picture = image.dataUrl;
+    this.cameraOn = false;
+  };
+
 }
