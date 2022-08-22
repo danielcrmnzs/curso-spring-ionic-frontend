@@ -18,6 +18,8 @@
     </ion-item>
     <ion-item>
       <ion-button expand="block" (click)="takePicture()" [disabled]="cameraOn">Camera</ion-button>
+      <ion-button *ngIf="picture" fill="outline" expand="block" (click)="sendPicture()">Enviar</ion-button>
+      <ion-button *ngIf="picture" fill="outline" expand="block" (click)="cancel()">Descartar</ion-button>
     </ion-item>
   </ion-card>
 

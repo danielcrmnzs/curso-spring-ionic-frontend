@@ -25,6 +25,10 @@ export class ProfilePage implements OnInit {
   ngOnInit() { }
 
   ionViewDidEnter() {
+    this.loadData();
+  }
+
+  loadData() {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       this.clienteService.findByEmail(localUser.email).subscribe(
@@ -63,5 +67,22 @@ export class ProfilePage implements OnInit {
     this.picture = image.dataUrl;
     this.cameraOn = false;
   };
+
+  sendPicture() {
+    this.clienteService.uploadPicture(this.picture)
+      .subscribe(
+        response => {
+          this.picture = null;
+          this.loadData();
+        },
+        error => {
+
+        });
+  }
+
+  cancel() {
+    this.picture = null;
+  }
+
 
 }
