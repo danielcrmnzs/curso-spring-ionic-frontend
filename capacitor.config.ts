@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'CursoSpringIonic',
+  appId: 'com.dcoimbra.cursospringionic',
+  appName: 'Sistema de Pedidos',
   webDir: 'www',
   bundledWebRuntime: false
 };
