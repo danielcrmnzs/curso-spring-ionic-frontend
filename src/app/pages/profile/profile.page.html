@@ -16,11 +16,11 @@
     <ion-item *ngIf="picture">
       <img [src]="picture">
     </ion-item>
-    <ion-item>
-      <ion-button expand="block" (click)="takePicture()" [disabled]="cameraOn">Camera</ion-button>
-      <ion-button *ngIf="picture" fill="outline" expand="block" (click)="sendPicture()">Enviar</ion-button>
-      <ion-button *ngIf="picture" fill="outline" expand="block" (click)="cancel()">Descartar</ion-button>
-    </ion-item>
+    <ion-button expand="block" (click)="takePicture()" [disabled]="cameraOn">Camera</ion-button>
+    <ion-button expand="block" (click)="getGalleryPicture()" [disabled]="cameraOn">Galeria</ion-button>
+    <ion-button *ngIf="picture" fill="outline" expand="block" (click)="sendPicture()">Enviar</ion-button>
+    <ion-button *ngIf="picture" fill="outline" expand="block" color="warning" (click)="cancel()">Descartar</ion-button>
+
   </ion-card>
 
 </ion-content>

@@ -4,7 +4,7 @@ import { ClienteDTO } from './../../models/cliente.dto';
 import { StorageService } from './../../services/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-profile',
@@ -57,16 +57,27 @@ export class ProfilePage implements OnInit {
   }
 
   async takePicture() {
-    this.cameraOn = true;
     const image = await Camera.getPhoto({
       quality: 100,
-      allowEditing: true,
-      resultType: CameraResultType.DataUrl
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Camera
     });
 
     this.picture = image.dataUrl;
-    this.cameraOn = false;
   };
+
+  async getGalleryPicture() {
+    const image = await Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Photos
+    });
+
+    this.picture = image.dataUrl;
+  };
+
 
   sendPicture() {
     this.clienteService.uploadPicture(this.picture)
