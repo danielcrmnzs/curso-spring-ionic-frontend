@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">CursoSpringIonic</string>
-    <string name="title_activity_main">CursoSpringIonic</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">Sistema de Pedidos</string>
+    <string name="title_activity_main">Sistema de Pedidos</string>
+    <string name="package_name">com.dcoimbra.cursospringionic</string>
+    <string name="custom_url_scheme">com.dcoimbra.cursospringionic</string>
 </resources>
